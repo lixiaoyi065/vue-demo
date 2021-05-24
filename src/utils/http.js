@@ -95,6 +95,13 @@ instance.interceptors.response.use(
       //eg：请求超时时或断网时，更新status的network状态
       // network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
+      if (!window.navigator.onLine) {
+        store.commit('changeNetwork', false);
+      } else {
+        return Promise.reject(error);
+      }
     }
   }
 )
+
+export default instance;
