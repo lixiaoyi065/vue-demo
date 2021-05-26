@@ -1,29 +1,24 @@
-'use strict'
-const path = require('path');
-const defaultSettings = require('./src/settings.js')
+const path = require('path')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || 'vue-demo';
-const port = process.env.port || process.env.npm_config_port || 9527
+const name = 'vue-demo'
 
 module.exports = {
   publicPath: '/',
   outputDir: 'dist',
+  assetsDir: 'static',
+  devServer: {
+    open: true
+  },
   configureWebpack: {
     name: name,
     resolve: {
       alias: {
-        '@': resolve('src')
+        '@': resolve("src")
       }
     }
-  },
-  module:{
-    rules : [{
-      test: /\.s[ac]ss$/i,
-      use: ["style-loader", "css-loader", "sass-loader"]
-    }]
   }
 }
